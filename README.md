@@ -23,14 +23,14 @@ conda activate mha_to_stl_env
 ```
 
 ## Usage
-To run this script, navigate to the directory containing the script after setting up your environment. You can simply run `crawl_and_convert.py` using Python and pass the required and optional parameters as arguments. Here is how you can structure the usage instructions including the flags:
+To run this script, navigate to the directory containing the script after setting up your environment. You can simply run `convert.py` using Python and pass the required and optional parameters as arguments. Here is how you can structure the usage instructions including the flags:
 
 ```
 # Basic usage with mandatory arguments
-python main_script.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR
+python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR
 
 # Full usage with all optional arguments
-python main_script.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --base_url BASE_URL --start_exam START_EXAM --end_exam END_EXAM --smooth --relaxation_factor 0.25 --lump_tissues --no_download
+python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --base_url BASE_URL --start_exam START_EXAM --end_exam END_EXAM --smooth --relaxation_factor 0.25 --lump_tissues --no_download
 ```
 
 ### Flags and Options
@@ -50,17 +50,17 @@ Each option and flag has a specific purpose, as outlined below:
 
 #### Minimal Example (Mandatory Only):
 ```
-python main_script.py --input_dir ./mha_files --output_dir ./stl_files
+python convert.py --input_dir ./mha_files --output_dir ./stl_files
 ```
 
 #### Full Example with Crawling:
 ```
-python main_script.py --input_dir ./mha_files --output_dir ./stl_files --base_url https://github.com/acpelicano/breast_models_repository/raw/main/ --start_exam 1 --end_exam 55 --smooth --relaxation_factor 0.25 --lump_tissues
+python convert.py --input_dir ./mha_files --output_dir ./stl_files --base_url https://github.com/acpelicano/breast_models_repository/raw/main/ --start_exam 1 --end_exam 55 --smooth --relaxation_factor 0.25 --lump_tissues
 ```
 
 #### Full Example without Crawling:
 ```
-python main_script.py --input_dir ./mha_files --output_dir ./stl_files --start_exam 1 --end_exam 55 --smooth --relaxation_factor 0.25 --lump_tissues --no_download
+python convert.py --input_dir ./mha_files --output_dir ./stl_files --start_exam 1 --end_exam 55 --smooth --relaxation_factor 0.25 --lump_tissues --no_download
 ```
 
 
