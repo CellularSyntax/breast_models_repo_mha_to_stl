@@ -47,7 +47,6 @@ Each option and flag has a specific purpose, as outlined below:
 - `--no_download` (Optional): When set, MHA files are not downloaded from the GitHub repository and only MHA files in the input directory are converted. Every segmented scan should be in its own subdirectory. Default value is False.
 
 ### Usage examples
-Here are some usage examples.
 
 #### Minimal Example (Mandatory Only):
 ```
