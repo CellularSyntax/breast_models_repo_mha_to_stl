@@ -53,3 +53,12 @@ Each option and flag has a specific purpose, as outlined below:
 - `--dont_lump_tissues` (Optional): When set, similar tissue types are not grouped during conversion. Default value is True.
 - `--no_download` (Optional): When set, MHA files are not downloaded from the GitHub repository and only MHA files in the input directory are converted. Every segmented scan should be in its own subdirectory. Default value is False.
 - `--exam_names` (Optional): When set, the script only processes the exams with specified exam names. It is a string containing a comma-separated list of file names, e.g. "Exam_01,Exam_02,Exam_03". By default, this option is not used.
+
+## Example Export 
+This is an example export visualized in ParaView for Exam_02 converted with the command below. Surfaces were smoothed with a relaxation factor of 0.25, and similar fat tissues (fat_high, fat_median, fat_low) and similar fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
+
+```
+python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
+```
+
+
