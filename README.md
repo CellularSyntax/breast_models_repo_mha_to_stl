@@ -29,8 +29,17 @@ To run this script, navigate to the directory containing the script after settin
 # Basic usage with mandatory arguments
 python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR
 
-# Full usage with all optional arguments
-python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --base_url BASE_URL --start_exam START_EXAM --end_exam END_EXAM --smooth --relaxation_factor 0.25 --lump_tissues --no_download
+# Full usage with all optional arguments specifying start and end exams with crawling
+python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --base_url BASE_URL --start_exam START_EXAM --end_exam END_EXAM --smooth --relaxation_factor 0.25 --lump_tissues
+
+# Full usage with all optional arguments specifying start and end exams without crawling (files exist locally in input folder)
+python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --start_exam START_EXAM --end_exam END_EXAM --smooth --relaxation_factor 0.25 --lump_tissues --no_download
+
+# Full usage with all optional arguments specifying specific exams to crawl convert
+python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --base_url BASE_URL --smooth --relaxation_factor 0.25 --lump_tissues --exam_names "Exam_01,Exam_02"
+
+# Full usage with all optional arguments specifying specific exams to convert
+python convert.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --smooth --relaxation_factor 0.25 --lump_tissues --exam_names "Exam_01,Exam_02" --no_download
 ```
 
 ### Flags and Options
@@ -45,6 +54,8 @@ Each option and flag has a specific purpose, as outlined below:
 - `--relaxation_factor` (Optional): Sets the relaxation factor for smoothing. Higher values increase smoothing. Default value is 0.25.
 - `--lump_tissues` (Optional): When set, groups similar tissue types together during conversion. Default value is True.
 - `--no_download` (Optional): When set, MHA files are not downloaded from the GitHub repository and only MHA files in the input directory are converted. Every segmented scan should be in its own subdirectory. Default value is False.
+- `--exam_names` (Optional): When set, the script only processes the exams with specified exam names. It is a string containing a comma-separated list of file names, e.g. "Exam_01,Exam_02,Exam_03". By default, this option is not used.
+
 
 ### Usage examples
 
