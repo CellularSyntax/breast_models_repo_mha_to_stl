@@ -55,11 +55,15 @@ Each option and flag has a specific purpose, as outlined below:
 - `--exam_names` (Optional): When set, the script only processes the exams with specified exam names. It is a string containing a comma-separated list of file names, e.g. "Exam_01,Exam_02,Exam_03". By default, this option is not used.
 
 ## Example Export 
-This is an example export visualized in ParaView for Exam_02 converted with the command below. Surfaces were smoothed with a relaxation factor of 0.25, and similar fat tissues (fat_high, fat_median, fat_low) and similar fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
+This is an example export visualized in ParaView for Exam_02 converted with the command below. 
 
 ```
 python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
 ```
+
+Surfaces were smoothed with a relaxation factor of 0.25, and similar fat tissues (fat_high, fat_median, fat_low) and similar fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
+
+
 #### Skin and Malignant Tumor (red):
 <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="500"/>
 
@@ -69,7 +73,7 @@ python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
 #### Skin, Malignant Tumor (red), Fibroglandular Tissue (green), and Fat (purple):
 <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="500"/>
 
-#### Skin, Malignant Tumor (red), Fibroglandular Tissue (green), Fat (purple), and Muscle (gray):
+#### Skin, Malignant Tumor (red), Fibroglandular Tissue (green), Fat (purple), and Muscle (gray -- not visible from that angle):
 <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="500"/>
 
 
