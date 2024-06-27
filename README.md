@@ -60,5 +60,16 @@ This is an example export visualized in ParaView for Exam_02 converted with the 
 ```
 python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
 ```
+#### Skin and Malignant Tumor (red):
+<img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="500"/>
+
+#### Skin, Malignant Tumor (red) and Fibroglandular Tissue (green):
+<img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular.png?raw=true" width="500"/>
+
+#### Skin, Malignant Tumor (red), Fibroglandular Tissue (green), and Fat (purple):
+<img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="500"/>
+
+#### Skin, Malignant Tumor (red), Fibroglandular Tissue (green), Fat (purple), and Muscle (gray):
+<img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="500"/>
 
 
