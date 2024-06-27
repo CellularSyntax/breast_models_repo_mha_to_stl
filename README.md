@@ -1,4 +1,4 @@
-# Breast Models STL Conversion
+# Breast Models MHA to STL Conversion
 
 ## Overview
 This script automates the extraction and conversion of segmented breast models from MHA (Meta Header) format to STL (Stereolithography) files. It crawls the [Breast Models GitHub Repository](https://github.com/acpelicano/breast_models_repository) containing segmented volumes of breast models, downloads these files, and converts each segmented volume into a separate STL file.
