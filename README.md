@@ -64,16 +64,16 @@ python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
 Surfaces were smoothed with a relaxation factor of 0.25, and similar fat tissues (fat_high, fat_median, fat_low) and similar fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
 
 
-#### Skin and Malignant Tumor (red):
+<b>Figure 1.</b> Skin and Malignant Tumor (red):
 <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="500"/>
 
-#### Skin, Malignant Tumor (red) and Fibroglandular Tissue (green):
+<b>Figure 2.</b> Skin, Malignant Tumor (red) and Fibroglandular Tissue (green):
 <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular.png?raw=true" width="500"/>
 
-#### Skin, Malignant Tumor (red), Fibroglandular Tissue (green), and Fat (purple):
+<b>Figure 3.</b> Skin, Malignant Tumor (red), Fibroglandular Tissue (green), and Fat (purple):
 <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="500"/>
 
-#### Skin, Malignant Tumor (red), Fibroglandular Tissue (green), Fat (purple), and Muscle (gray -- not visible from that angle):
+<b>Figure 4.</b> Skin, Malignant Tumor (red), Fibroglandular Tissue (green), Fat (purple), and Muscle (gray -- not visible from that angle):
 <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="500"/>
 
 
