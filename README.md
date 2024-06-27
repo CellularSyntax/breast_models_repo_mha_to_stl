@@ -61,7 +61,7 @@ This is an example export visualized in ParaView for Exam_02 converted with the 
 python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
 ```
 
-Surfaces were smoothed with a relaxation factor of 0.25, and similar fat tissues (fat_high, fat_median, fat_low) and similar fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
+Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
 
 <p style="text-align: center;">
   <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="800"/><br/>
