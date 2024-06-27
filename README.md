@@ -13,7 +13,7 @@ doi: [https://doi.org/10.1371/journal.pone.0302974](https://doi.org/10.1371/jour
 git clone https://github.com/your_username/breast_models_repo_mha_to_stl.git
 cd breast_models_repo_mha_to_stl
 ```
-### Create and activate a Conda environment:
+### Create and Activate a Conda Environment:
 If you don't have Conda installed, you can install Miniconda or Anaconda as they come with Conda included.
 
 Create and activate the environment using the provided `environment.yml` file:
