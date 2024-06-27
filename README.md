@@ -65,21 +65,21 @@ Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissu
 
 <p style="text-align: center;">
   <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="800"/><br/>
-  <b>Figure 1.</b> Skin (gray) and Malignant Tumor (red).<br/><br/>
+  <b>Figure 1.</b> Skin (gray) and malignant tumor (red).<br/><br/>
 </p>
 
 <p style="text-align: center;">
   <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular.png?raw=true" width="800"/><br/>
-  <b>Figure 2.</b> Skin (gray), Malignant Tumor (red) and Fibroglandular Tissue (green).<br/><br/>
+  <b>Figure 2.</b> Skin (gray), malignant tumor (red), and fibroglandular tissue (green).<br/><br/>
 </p>
 
 <p style="text-align: center;">
   <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="800"/><br/>
-  <b>Figure 3.</b> Skin (gray), Malignant Tumor (red), Fibroglandular Tissue (green), and Fat (purple).<br/><br/>
+  <b>Figure 3.</b> Skin (gray), malignant tumor (red), fibroglandular tissue (green), and fat (purple).<br/><br/>
 </p>
 
 <p style="text-align: center;">
   <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
-  <b>Figure 4.</b> Skin (gray), Malignant Tumor (red), Fibroglandular Tissue (green), Fat (purple), and Muscle (dark gray -- not visible from that angle).
+  <b>Figure 4.</b> Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (dark gray -- not visible from that angle).
 </p>
 
