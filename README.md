@@ -26,7 +26,7 @@ conda activate mha_to_stl_env
 To run this script, navigate to the directory containing the script after setting up your environment. You can simply run `convert.py` using Python and pass the required and optional parameters as arguments. Here is how you can structure the usage instructions including the flags:
 
 ```
-# Example 1:Basic usage  with mandatory arguments (crawls and converts all exams from the repository, grouping similar tissues and applying smoothing)
+# Example 1: Basic usage  with mandatory arguments (crawls and converts all exams from the repository, grouping similar tissues and applying smoothing)
 python convert.py --input_dir ./mha --output_dir ./stl
 
 # Example 2: Crawl and convert Exams 1 - 20, deactivate smoothing and grouping of similar tissues
