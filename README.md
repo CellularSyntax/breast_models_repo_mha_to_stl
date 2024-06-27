@@ -3,11 +3,9 @@
 ## Overview
 This script automates the extraction and conversion of segmented breast models from MHA (Meta Header) format to STL (Stereolithography) files. It crawls the [Breast Models GitHub Repository](https://github.com/acpelicano/breast_models_repository) containing segmented volumes of breast models, downloads these files, and converts each segmented volume into a separate STL file.
 
-## Data and Literature
-#### Breast Models GitHub Repository
-[Repository](https://github.com/acpelicano/breast_models_repository)
-#### Publication
-[Pelicano, Ana C., et al. "Repository of MRI-derived models of the breast with single and multiple benign and malignant tumors for microwave imaging research." Plos one 19.5 (2024): e0302974.](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0302974#ack)
+### References
+Pelicano, Ana C., et al. "Repository of MRI-derived models of the breast with single and multiple benign and malignant tumors for microwave imaging research." Plos one 19.5 (2024): e0302974.
+doi: [https://doi.org/10.1371/journal.pone.0302974](https://doi.org/10.1371/journal.pone.0302974)
 
 ## Installation
 ### Clone the Repository
