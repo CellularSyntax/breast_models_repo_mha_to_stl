@@ -89,11 +89,11 @@ Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissu
 </p>
 
 ### Example 2
-This is an example export visualized in ParaView for Exam_02 converted with the command below. Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped. Additionally, the mesh was simplified with a target reduction factor of 0.95 and uniformly remeshed.
+This is an example export visualized in ParaView for Exam_02 converted with the command below. Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped. Additionally, the mesh was simplified with a target reduction factor of 0.99 and uniformly remeshed.
 
 
 ```
-python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" --remesh
+python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" --remesh --target_reduction=0.99
 ```
 
 <p style="text-align: center;">
@@ -107,7 +107,7 @@ python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" -
 </p>
 
 <p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malginant_tumor+fibroglandular+fat.png?raw=true" width="800"/><br/>
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malignant_tumor+fibroglandulat+fat.png?raw=true" width="800"/><br/>
   <b>Figure 3.</b> Remesehd model. Skin (gray), malignant tumor (red), fibroglandular tissue (green), and fat (purple).<br/><br/>
 </p>
 
