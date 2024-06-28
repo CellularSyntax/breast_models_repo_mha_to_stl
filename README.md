@@ -60,35 +60,6 @@ Each option and flag has a specific purpose, as outlined below:
 
 ## Example Exports
 ### Example 1
-This is an example export visualized in ParaView for Exam_02 converted with the command below. 
-
-```
-python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
-```
-
-Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
-
-<p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor_2.png?raw=true" width="800"/><br/>
-  <b>Figure 1.</b> Skin (gray) and malignant tumor (red).<br/><br/>
-</p>
-
-<p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular.png?raw=true" width="800"/><br/>
-  <b>Figure 2.</b> Skin (gray), malignant tumor (red), and fibroglandular tissue (green).<br/><br/>
-</p>
-
-<p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="800"/><br/>
-  <b>Figure 3.</b> Skin (gray), malignant tumor (red), fibroglandular tissue (green), and fat (purple).<br/><br/>
-</p>
-
-<p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
-  <b>Figure 4.</b> Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (dark gray -- not visible from that angle).
-</p>
-
-### Example 2
 This is an example export visualized in ParaView for Exam_02 converted with the command below. Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped. Additionally, the mesh was simplified with a target reduction factor of 0.99 and uniformly remeshed.
 
 
@@ -117,3 +88,31 @@ python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" -
 </p>
 
 
+### Example 2
+This is an example export visualized in ParaView for Exam_02 converted with the command below. 
+
+```
+python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
+```
+
+Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="800"/><br/>
+  <b>Figure 1.</b> Skin (gray) and malignant tumor (red).<br/><br/>
+</p>
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular.png?raw=true" width="800"/><br/>
+  <b>Figure 2.</b> Skin (gray), malignant tumor (red), and fibroglandular tissue (green).<br/><br/>
+</p>
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="800"/><br/>
+  <b>Figure 3.</b> Skin (gray), malignant tumor (red), fibroglandular tissue (green), and fat (purple).<br/><br/>
+</p>
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
+  <b>Figure 4.</b> Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (dark gray -- not visible from that angle).
+</p>
