@@ -1,7 +1,7 @@
 import argparse
 from helper_fns import download_and_unzip, batch_process_mha_files, print_ascii_art
 
-def main(input_dir, output_dir, base_url, start_exam, end_exam, dont_smooth, relaxation_factor, dont_lump_tissues, no_download, exam_names):
+def main(input_dir, output_dir, base_url, start_exam, end_exam, dont_smooth, relaxation_factor, dont_lump_tissues, no_download, exam_names, remesh, target_reduction):
     # Label dictionary for 'detailed label map' according to repo documentation
     LABELS = {
         -4: 'benign_tumour',
@@ -36,9 +36,9 @@ def main(input_dir, output_dir, base_url, start_exam, end_exam, dont_smooth, rel
 
     # Convert MHA files to STL files, adjusting for specific exams if provided
     if exam_names:
-        batch_process_mha_files(input_dir, output_dir, LABELS, smooth=smooth, relaxation_factor=relaxation_factor, lump_tissues=lump_tissues, specific_exams=specific_exams)
+        batch_process_mha_files(input_dir, output_dir, LABELS, smooth=smooth, relaxation_factor=relaxation_factor, lump_tissues=lump_tissues, specific_exams=specific_exams, simplify_mesh=remesh, target_reduction=target_reduction)
     else:
-        batch_process_mha_files(input_dir, output_dir, LABELS, smooth=smooth, relaxation_factor=relaxation_factor, lump_tissues=lump_tissues, start_exam=start_exam, end_exam=end_exam)
+        batch_process_mha_files(input_dir, output_dir, LABELS, smooth=smooth, relaxation_factor=relaxation_factor, lump_tissues=lump_tissues, start_exam=start_exam, end_exam=end_exam, simplify_mesh=remesh, target_reduction=target_reduction)
 
 if __name__ == '__main__':
     print_ascii_art()
@@ -53,7 +53,8 @@ if __name__ == '__main__':
     parser.add_argument('--dont_lump_tissues', action='store_true', help='Do not group similar tissue types during conversion')
     parser.add_argument('--no_download', action='store_true', help='Skip downloading MHA files and use existing files in the input directory')
     parser.add_argument('--exam_names', type=str, help='Comma-separated list of specific exam names to process (e.g., Exam_01,Exam_02)')
-
+    parser.add_argument('--remesh', action='store_true', help='Simplify the mesh using Quadric Edge Collapse Decimation')
+    parser.add_argument('--target_reduction', type=float, default=0.95, help='Target reduction factor for mesh simplification')
     args = parser.parse_args()
 
-    main(args.input_dir, args.output_dir, args.base_url, args.start_exam, args.end_exam, args.dont_smooth, args.relaxation_factor, args.dont_lump_tissues, args.no_download, args.exam_names)
+    main(args.input_dir, args.output_dir, args.base_url, args.start_exam, args.end_exam, args.dont_smooth, args.relaxation_factor, args.dont_lump_tissues, args.no_download, args.exam_names, args.remesh, args.target_reduction)
