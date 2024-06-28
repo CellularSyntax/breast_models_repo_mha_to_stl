@@ -69,7 +69,7 @@ python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_02"
 Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped.
 
 <p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="800"/><br/>
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor_2.png?raw=true" width="800"/><br/>
   <b>Figure 1.</b> Skin (gray) and malignant tumor (red).<br/><br/>
 </p>
 
@@ -113,7 +113,7 @@ python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" -
 
 <p style="text-align: center;">
   <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malginant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
-  <b>Figure 4.</b> Remesehd model. Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (dark gray -- not visible from that angle).
+  <b>Figure 4.</b> Remesehd model. Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (orange).
 </p>
 
 
