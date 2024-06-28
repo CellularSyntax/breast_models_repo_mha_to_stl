@@ -39,7 +39,7 @@ python convert.py --input_dir ./mha --output_dir ./stl --start_exam 1 --end_exam
 python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_01,Exam_13,Exam_17" --relaxation_factor 0.5 --no_download
 
 # Example 5: Crawl and convert Exams 1 and 2 and performs uniform remeshing
-python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_01,Exam_02" --remesh
+python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_01,Exam_02" --remesh --target_reduction 0.99
 ```
 
 ### Flags and Options
