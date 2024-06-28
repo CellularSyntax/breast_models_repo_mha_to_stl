@@ -9,6 +9,8 @@ from tqdm import tqdm
 import pyvista 
 import fast_simplification
 import pyacvd
+import pymeshfix
+
 
 def download_and_unzip(base_url, target_directory, start_exam=1, end_exam=55, specific_exams=None):
     # Ensure the target directory exists
@@ -130,6 +132,8 @@ def mha_to_stl_vtk_no_lump(input_filename, output_dir, label_dict, smooth=False,
                 clus.cluster(len(facets))
                 remesh = clus.create_mesh()
                 remesh.save(stl_filename)
+                tqdm.write("Cleaning mesh...")
+                pymeshfix.clean_from_file(stl_filename, stl_filename)
 
             tqdm.write(f"Saved: {stl_filename}")
 
@@ -232,6 +236,8 @@ def process_label_group(mask, name, image, output_dir, smooth, relaxation_factor
         clus.cluster(len(facets))
         remesh = clus.create_mesh()
         remesh.save(stl_filename)
+        tqdm.write("Cleaning mesh...")
+        pymeshfix.clean_from_file(stl_filename, stl_filename)
 
     tqdm.write(f"Saved: {stl_filename}")
 
