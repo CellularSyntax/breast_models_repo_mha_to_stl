@@ -4,8 +4,11 @@ import zipfile
 import numpy as np
 import SimpleITK as sitk
 import vtk
-from vtk.util.numpy_support import numpy_to_vtk
+from vtk.util.numpy_support import numpy_to_vtk, vtk_to_numpy
 from tqdm import tqdm
+import pyvista 
+import fast_simplification
+import pyacvd
 
 def download_and_unzip(base_url, target_directory, start_exam=1, end_exam=55, specific_exams=None):
     # Ensure the target directory exists
@@ -36,8 +39,8 @@ def download_and_unzip(base_url, target_directory, start_exam=1, end_exam=55, sp
                     for chunk in response.iter_content(chunk_size=block_size):
                         f.write(chunk)
 
-                if total_size != 0:
-                    tqdm.write("ERROR, something went wrong")
+                #if total_size != 0:
+                #    tqdm.write("ERROR, something went wrong")
 
                 tqdm.write(f"Downloaded {zip_path}")
 
@@ -56,7 +59,7 @@ def download_and_unzip(base_url, target_directory, start_exam=1, end_exam=55, sp
             pbar.update(1)
 
 # Convert .mha files to .stl files using VTK
-def mha_to_stl_vtk_no_lump(input_filename, output_dir, label_dict, smooth=False, relaxation_factor=0.1):
+def mha_to_stl_vtk_no_lump(input_filename, output_dir, label_dict, smooth=False, relaxation_factor=0.1, simplify_mesh=False, target_reduction=0.9):
     # Ensure the output directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -115,10 +118,23 @@ def mha_to_stl_vtk_no_lump(input_filename, output_dir, label_dict, smooth=False,
             stl_filename = os.path.join(output_dir, f"{label_dict[label]}.stl")
             stl_writer.SetFileName(stl_filename)
             stl_writer.Write()
+
+            if simplify_mesh:
+                mesh = pyvista.read(stl_filename)
+                tqdm.write("Simplifying mesh...")
+                simple_mesh = fast_simplification.simplify_mesh(mesh,target_reduction)
+                clus = pyacvd.Clustering(simple_mesh)
+                clus.subdivide(3)
+                _, facets = convert_to_vtk_mesh(simple_mesh)
+                tqdm.write("Remeshing...")
+                clus.cluster(len(facets))
+                remesh = clus.create_mesh()
+                remesh.save(stl_filename)
+
             tqdm.write(f"Saved: {stl_filename}")
 
 # Convert .mha files to .stl files using VTK
-def mha_to_stl_vtk_lump(input_filename, output_dir, label_dict, smooth=False, relaxation_factor=0.1, lump_tissues=True):
+def mha_to_stl_vtk_lump(input_filename, output_dir, label_dict, smooth=False, relaxation_factor=0.1, lump_tissues=True, simplify_mesh=False, target_reduction=0.9):
     # Ensure the output directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -146,7 +162,7 @@ def mha_to_stl_vtk_lump(input_filename, output_dir, label_dict, smooth=False, re
                 continue
 
             tqdm.write(f"Processing group: {group_name}")
-            process_label_group(group_mask, group_name, image, output_dir, smooth, relaxation_factor)
+            process_label_group(group_mask, group_name, image, output_dir, smooth, relaxation_factor, simplify_mesh=False, target_reduction=0.9)
 
     # Process individual labels
     for label, name in label_dict.items():
@@ -163,9 +179,9 @@ def mha_to_stl_vtk_lump(input_filename, output_dir, label_dict, smooth=False, re
             continue
 
         tqdm.write(f"Processing label: {name} (Label ID: {label})")
-        process_label_group(label_mask, name, image, output_dir, smooth, relaxation_factor)
+        process_label_group(label_mask, name, image, output_dir, smooth, relaxation_factor, simplify_mesh=simplify_mesh, target_reduction=target_reduction)
 
-def process_label_group(mask, name, image, output_dir, smooth, relaxation_factor):
+def process_label_group(mask, name, image, output_dir, smooth, relaxation_factor, simplify_mesh=False, target_reduction=0.9):
     # Convert numpy array to VTK array
     vtk_data = numpy_to_vtk(num_array=mask.ravel(), deep=True, array_type=vtk.VTK_UNSIGNED_CHAR)
 
@@ -204,9 +220,22 @@ def process_label_group(mask, name, image, output_dir, smooth, relaxation_factor
     stl_filename = os.path.join(output_dir, f"{name}.stl")
     stl_writer.SetFileName(stl_filename)
     stl_writer.Write()
+
+    if simplify_mesh:
+        mesh = pyvista.read(stl_filename)
+        tqdm.write("Simplifying mesh...")
+        simple_mesh = fast_simplification.simplify_mesh(mesh,target_reduction)
+        clus = pyacvd.Clustering(simple_mesh)
+        clus.subdivide(3)
+        _, facets = convert_to_vtk_mesh(simple_mesh)
+        tqdm.write("Remeshing...")
+        clus.cluster(len(facets))
+        remesh = clus.create_mesh()
+        remesh.save(stl_filename)
+
     tqdm.write(f"Saved: {stl_filename}")
 
-def batch_process_mha_files(input_dir, output_dir, label_dict, smooth=True, relaxation_factor=0.1, lump_tissues=True, start_exam=1, end_exam=55, specific_exams=None):
+def batch_process_mha_files(input_dir, output_dir, label_dict, smooth=True, relaxation_factor=0.1, lump_tissues=True, start_exam=1, end_exam=55, specific_exams=None, simplify_mesh=False, target_reduction=0.9):
     # Collect directories to process
     directories_to_process = []
     for subdir, dirs, files in os.walk(input_dir):
@@ -231,23 +260,48 @@ def batch_process_mha_files(input_dir, output_dir, label_dict, smooth=True, rela
                     output_directory = os.path.join(output_dir, exam_name)
                     # Decide which processing function to use based on lump_tissues flag
                     if lump_tissues:
-                        mha_to_stl_vtk_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor, lump_tissues)
+                        mha_to_stl_vtk_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor, lump_tissues, simplify_mesh=simplify_mesh, target_reduction=target_reduction)
                     else:
-                        mha_to_stl_vtk_no_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor)
+                        mha_to_stl_vtk_no_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor, simplify_mesh=simplify_mesh, target_reduction=target_reduction)
             pbar.update(1)
     
     tqdm.write("Processing complete.")
 
+def convert_to_vtk_mesh(mesh):
+    # Ensure the mesh is in the correct format
+    if not isinstance(mesh, pyvista.PolyData):
+        raise ValueError("Input must be a pyvista PolyData object.")
+    
+    # Convert pyvista mesh to vtkPolyData
+    polydata = mesh.extract_surface().cast_to_unstructured_grid()
+    
+    # Get points
+    points = polydata.GetPoints()
+    array = points.GetData()
+    points_numpy = vtk_to_numpy(array)
+    
+    # Get facets (cells)
+    cells = polydata.GetCells()
+    cells_array = vtk_to_numpy(cells.GetData())
+    
+    # Each cell is a triangle (3 points)
+    # Reshape to get each cell's point indices
+    num_cells = polydata.GetNumberOfCells()
+    cells_numpy = cells_array.reshape((num_cells, 4))[:, 1:4]
+    
+    return points_numpy, cells_numpy
+
+
 # Print ASCII art
 def print_ascii_art():
     ascii_art = r"""
- _____ ______   ___  ___  ________             _________  ________             ________  _________  ___          
-|\   _ \  _   \|\  \|\  \|\   __  \           |\___   ___\\   __  \           |\   ____\|\___   ___\\  \         
-\ \  \\\__\ \  \ \  \\\  \ \  \|\  \          \|___ \  \_\ \  \|\  \          \ \  \___|\|___ \  \_\ \  \        
- \ \  \\|__| \  \ \   __  \ \   __  \              \ \  \ \ \  \\\  \          \ \_____  \   \ \  \ \ \  \       
-  \ \  \    \ \  \ \  \ \  \ \  \ \  \              \ \  \ \ \  \\\  \          \|____|\  \   \ \  \ \ \  \____  
-   \ \__\    \ \__\ \__\ \__\ \__\ \__\              \ \__\ \ \_______\           ____\_\  \   \ \__\ \ \_______\
-    \|__|     \|__|\|__|\|__|\|__|\|__|               \|__|  \|_______|          |\_________\   \|__|  \|_______|
-                                                                                 \|_________|                    
+ _____ ______   ___  ___  ________         _________  ________         ________  _________  ___          
+|\   _ \  _   \|\  \|\  \|\   __  \       |\___   ___\\   __  \       |\   ____\|\___   ___\\  \         
+\ \  \\\__\ \  \ \  \\\  \ \  \|\  \      \|___ \  \_\ \  \|\  \      \ \  \___|\|___ \  \_\ \  \        
+ \ \  \\|__| \  \ \   __  \ \   __  \          \ \  \ \ \  \\\  \      \ \_____  \   \ \  \ \ \  \       
+  \ \  \    \ \  \ \  \ \  \ \  \ \  \          \ \  \ \ \  \\\  \      \|____|\  \   \ \  \ \ \  \____  
+   \ \__\    \ \__\ \__\ \__\ \__\ \__\          \ \__\ \ \_______\       ____\_\  \   \ \__\ \ \_______\
+    \|__|     \|__|\|__|\|__|\|__|\|__|           \|__|  \|_______|      |\_________\   \|__|  \|_______|
+                                                                         \|_________|                    
     """
     print(ascii_art)
