@@ -226,18 +226,22 @@ def process_label_group(mask, name, image, output_dir, smooth, relaxation_factor
     stl_writer.Write()
 
     if simplify_mesh:
-        mesh = pyvista.read(stl_filename)
-        tqdm.write("Simplifying mesh...")
-        simple_mesh = fast_simplification.simplify_mesh(mesh,target_reduction)
-        clus = pyacvd.Clustering(simple_mesh)
-        clus.subdivide(3)
-        _, facets = convert_to_vtk_mesh(simple_mesh)
-        tqdm.write("Remeshing...")
-        clus.cluster(len(facets))
-        remesh = clus.create_mesh()
-        remesh.save(stl_filename)
-        tqdm.write("Cleaning mesh...")
-        pymeshfix.clean_from_file(stl_filename, stl_filename)
+        try:
+            mesh = pyvista.read(stl_filename)
+            tqdm.write("Simplifying mesh...")
+            simple_mesh = fast_simplification.simplify_mesh(mesh,target_reduction)
+            clus = pyacvd.Clustering(simple_mesh)
+            clus.subdivide(3)
+            _, facets = convert_to_vtk_mesh(simple_mesh)
+            tqdm.write("Remeshing...")
+            clus.cluster(len(facets))
+            remesh = clus.create_mesh()
+            remesh.save(stl_filename)
+            tqdm.write("Cleaning mesh...")
+            pymeshfix.clean_from_file(stl_filename, stl_filename)
+        except Exception as e:
+            tqdm.write("Failed simplification... Saving without simplification.")
+            return
 
     tqdm.write(f"Saved: {stl_filename}")
 
