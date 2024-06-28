@@ -38,6 +38,8 @@ python convert.py --input_dir ./mha --output_dir ./stl --start_exam 1 --end_exam
 # Example 4: Convert locally stored exams with name Exam_01, Exam_13, and Exam_17, don't group similar tissues and apply smoothing with a relaxation factor of 0.5
 python convert.py --input_dir ./mha --output_dir ./stl --exam_names="Exam_01,Exam_13,Exam_17" --relaxation_factor 0.5 --no_download
 
+# Example 5: Crawl and convert Exams 1 and 2 and performs uniform remeshing
+python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_01,Exam_02" --remesh
 ```
 
 ### Flags and Options
@@ -53,8 +55,11 @@ Each option and flag has a specific purpose, as outlined below:
 - `--dont_lump_tissues` (Optional): When set, similar tissue types are not grouped during conversion. Default value is True.
 - `--no_download` (Optional): When set, MHA files are not downloaded from the GitHub repository and only MHA files in the input directory are converted. Every segmented scan should be in its own subdirectory. Default value is False.
 - `--exam_names` (Optional): When set, the script only processes the exams with specified exam names. It is a string containing a comma-separated list of file names, e.g. "Exam_01,Exam_02,Exam_03". By default, this option is not used.
+- `--remesh` (Optional): Performs mesh simplification and uniform remeshing. By default, this option is not used.
+- `--target_reduction` (Optional): Target reduction factor for mesh simplification step in remeshing process. Default value is 0.95.
 
-## Example Export 
+## Example Exports
+### Example 1
 This is an example export visualized in ParaView for Exam_02 converted with the command below. 
 
 ```
@@ -82,4 +87,33 @@ Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissu
   <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
   <b>Figure 4.</b> Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (dark gray -- not visible from that angle).
 </p>
+
+### Example 2
+This is an example export visualized in ParaView for Exam_02 converted with the command below. Surfaces were smoothed with a relaxation factor of 0.25, and different fat tissues (fat_high, fat_median, fat_low) and fibroglandular tissues (fibroglandular_low, fibroglandular_median, fibroglandular_high) were lumped. Additionally, the mesh was simplified with a target reduction factor of 0.95 and uniformly remeshed.
+
+
+```
+python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" --remesh
+```
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="800"/><br/>
+  <b>Figure 1.</b> Remesehd model. Skin (gray) and malignant tumor (red).<br/><br/>
+</p>
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular.png?raw=true" width="800"/><br/>
+  <b>Figure 2.</b> Remesehd model. Skin (gray), malignant tumor (red), and fibroglandular tissue (green).<br/><br/>
+</p>
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="800"/><br/>
+  <b>Figure 3.</b> Remesehd model. Skin (gray), malignant tumor (red), fibroglandular tissue (green), and fat (purple).<br/><br/>
+</p>
+
+<p style="text-align: center;">
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
+  <b>Figure 4.</b> Remesehd model. Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (dark gray -- not visible from that angle).
+</p>
+
 
