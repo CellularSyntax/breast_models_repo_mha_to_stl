@@ -97,7 +97,7 @@ python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" -
 ```
 
 <p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malignant_tumor.png?raw=true" width="800"/><br/>
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malignant_tumor_2.png?raw=true" width="800"/><br/>
   <b>Figure 1.</b> Remesehd model. Skin (gray) and malignant tumor (red).<br/><br/>
 </p>
 
