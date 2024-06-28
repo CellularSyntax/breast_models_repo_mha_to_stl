@@ -97,22 +97,22 @@ python convert.py --input_dir ./mha --output_dir ./stl_ --exam_names "Exam_02" -
 ```
 
 <p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor.png?raw=true" width="800"/><br/>
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malginant_tumor.png?raw=true" width="800"/><br/>
   <b>Figure 1.</b> Remesehd model. Skin (gray) and malignant tumor (red).<br/><br/>
 </p>
 
 <p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular.png?raw=true" width="800"/><br/>
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malignant_tumor+fibroglandular.png?raw=true" width="800"/><br/>
   <b>Figure 2.</b> Remesehd model. Skin (gray), malignant tumor (red), and fibroglandular tissue (green).<br/><br/>
 </p>
 
 <p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat.png?raw=true" width="800"/><br/>
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malginant_tumor+fibroglandular+fat.png?raw=true" width="800"/><br/>
   <b>Figure 3.</b> Remesehd model. Skin (gray), malignant tumor (red), fibroglandular tissue (green), and fat (purple).<br/><br/>
 </p>
 
 <p style="text-align: center;">
-  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/skin+malignant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
+  <img src="https://github.com/CellularSyntax/breast_models_repo_mha_to_stl/blob/main/example/remeshed_skin+malginant_tumor+fibroglandular+fat+muscle.png?raw=true" width="800"/><br/>
   <b>Figure 4.</b> Remesehd model. Skin (gray), malignant tumor (red), fibroglandular tissue (green), fat (purple), and muscle (dark gray -- not visible from that angle).
 </p>
 
