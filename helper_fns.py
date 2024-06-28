@@ -264,11 +264,20 @@ def batch_process_mha_files(input_dir, output_dir, label_dict, smooth=True, rela
                 if file.endswith('.mha'):
                     input_filename = os.path.join(subdir, file)
                     output_directory = os.path.join(output_dir, exam_name)
+                    ## Decide which processing function to use based on lump_tissues flag
+                    #if lump_tissues:
+                    #    mha_to_stl_vtk_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor, lump_tissues, simplify_mesh=simplify_mesh, target_reduction=target_reduction)
+                    #else:
+                    #    mha_to_stl_vtk_no_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor, simplify_mesh=simplify_mesh, target_reduction=target_reduction)
+                try:
                     # Decide which processing function to use based on lump_tissues flag
                     if lump_tissues:
                         mha_to_stl_vtk_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor, lump_tissues, simplify_mesh=simplify_mesh, target_reduction=target_reduction)
                     else:
                         mha_to_stl_vtk_no_lump(input_filename, output_directory, label_dict, smooth, relaxation_factor, simplify_mesh=simplify_mesh, target_reduction=target_reduction)
+                except Exception as e:
+                    tqdm.write(f"Error processing {input_filename}: {e}")
+
             pbar.update(1)
     
     tqdm.write("Processing complete.")
